@@ -1,4 +1,3 @@
-/* Configurações Gerais e Cores do Projeto */
 :root {
     --verde-sereno: #4CAF50;
     --cinza-escuro: #333333;
@@ -8,132 +7,24 @@
     --branco: #ffffff;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     color: var(--cinza-escuro);
     background-color: var(--branco);
-    p, li {
-    text-align: justify;
-}
 }
 
+/* FIX CRÍTICO: display: flow-root permite que o sticky funcione */
 .container {
     width: 80%;
     margin: auto;
-    overflow: hidden;
+    display: flow-root; 
 }
 
-/* Cabeçalho / Navigation */
-header {
-    background: var(--cinza-escuro);
-    color: var(--branco);
-    padding-top: 5px;
-    min-height: 120px;
-    border-bottom: var(--verde-sereno) 3px solid;
-}
-
-#branding {
-    width: 100%; /* Ocupa a largura total para empurrar o nav para baixo */
-    text-align: center; /* Centraliza o logo e nome na parte superior */
-    margin-bottom: 0px;
-}
-
-#branding h1 {
-    margin: 0;
-    font-family: 'Orbitron', sans-serif;
-    text-transform: uppercase;
-    font-size: 26px; /* Aumentado para destaque */
-}
-
-#branding .logo {
-    width: 300px;
-    vertical-align: top;
-    margin-right: 10px;
-
-}
-
-nav {
-    float: none;       /* */
-    margin-top: 10px;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none;
-}
-
-nav li {
-    display: inline;
-    padding: 0 20px 0 20px;
-}
-
-nav a {
-    color: var(--branco);
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 20px;
-    font-weight: bold;
-    transition: color 0.3s ease;
-    letter-spacing: 1px;
-}
-
-nav a:hover {
-    color: var(--azul-ia-vibrante);
-}
-
-/* Showcase / Hero Section */
-#showcase {
-    min-height: 400px;
-    background: linear-gradient(rgba(0, 31, 63, 0.8), rgba(0, 31, 63, 0.8)), 
-                url('background-tech.jpg') no-repeat center center/cover;
-    text-align: center;
-    color: var(--branco);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 5px solid var(--azul-ia-vibrante);
-}
-
-#showcase h2 {
-    font-size: 45px;
-    margin-bottom: 10px;
-    font-family: 'Orbitron', sans-serif;
-}
-
-#showcase p {
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-
-.button {
-    height: 45px;
-    display: inline-block;
-    background: var(--verde-sereno);
-    color: var(--branco);
-    padding: 10px 30px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background 0.3s ease;
-}
-
-.button:hover {
-    background: var(--azul-ia-vibrante);
-    color: var(--cinza-escuro);
-}
-
-/* Seção Sobre */
-#sobre {
-    padding: 40px 0;
-}
+/* Layout de Colunas */
+#conteudo-principal { padding: 40px 0; }
 
 .main-col {
     float: left;
@@ -143,84 +34,67 @@ nav a:hover {
 #sidebar {
     float: right;
     width: 25%;
+    position: sticky;
+    top: 20px; /* Gruda no topo com 20px de respiro */
 }
 
-.dark {
-    padding: 15px;
+/* Estilos visuais */
+header {
     background: var(--cinza-escuro);
     color: var(--branco);
-    margin-top: 10px;
-    border-radius: 5px;
-    border-left: 5px solid var(--azul-ia-vibrante);
-}
-
-/* Rodapé */
-footer {
-    padding: 20px;
-    margin-top: 20px;
-    color: var(--branco);
-    background-color: var(--cinza-escuro);
+    padding: 20px 0;
+    border-bottom: var(--verde-sereno) 3px solid;
     text-align: center;
-    border-top: 3px solid var(--verde-sereno);
 }
 
-/* Responsividade Básica */
-@media(max-width: 768px) {
-    #branding, nav, .main-col, #sidebar {
-        float: none;
-        text-align: center;
-        width: 100%;
-    }
-    
-    header {
-        padding-bottom: 20px;
-    }
-    
-    #showcase h2 {
-        font-size: 30px;
-    }
-    
+#branding .logo { width: 300px; }
+
+nav ul { list-style: none; margin-top: 10px; }
+nav li { display: inline; padding: 0 20px; }
+nav a { color: var(--branco); text-decoration: none; font-weight: bold; }
+nav a:hover { color: var(--azul-ia-vibrante); }
+
+#showcase {
+    min-height: 100px;
+    background: linear-gradient(rgba(0, 31, 63, 0.8), rgba(0, 31, 63, 0.8)), url('background-tech.jpg') no-repeat center/cover;
+    text-align: center;
+    color: var(--branco);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 5px solid var(--azul-ia-vibrante);
 }
-/* Seção de Materiais - Estilo dos Cards */
+
+/* Grid de Materiais */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     margin-top: 20px;
 }
 
+/* Atualize o seu .card existente */
 .card {
     background: var(--cinza-claro);
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 20px;
+    padding: 30px;
     text-align: center;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    /* Transições suaves para transformações e sombras */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
+/* O efeito ao passar o mouse */
 .card:hover {
-    transform: translateY(-5px); /* Efeito de flutuar ao passar o mouse */
+    transform: translateY(-10px); /* Movimenta o bloco 10px para cima */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Cria uma sombra para dar profundidade */
     border-color: var(--azul-ia-vibrante);
 }
 
-.card-header {
-    margin-bottom: 15px;
-}
-
-.card-icon {
-    width: 40px;
-    margin-bottom: 10px;
-}
-
-.card h3 {
-    color: var(--cinza-escuro);
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.2rem;
-}
-
-.card p {
-    font-size: 14px;
-    margin-bottom: 20px;
+.card-grid .card:last-child {
+    grid-column: span 2;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .button-card {
@@ -232,9 +106,34 @@ footer {
     border-radius: 4px;
     font-size: 14px;
     font-weight: bold;
-    transition: background 0.3s ease;
+    /* Garante que a mudança seja suave */
+    transition: all 0.3s ease; 
 }
 
+/* O efeito ao passar o mouse */
 .button-card:hover {
-    background: var(--verde-sereno);
+    background: var(--verde-sereno); /* Muda a cor */
+    transform: scale(1.05); /* Aumenta levemente o tamanho do botão */
+    cursor: pointer;
+}
+
+.dark {
+    padding: 20px;
+    background: var(--cinza-escuro);
+    color: var(--branco);
+    border-radius: 5px;
+    border-left: 5px solid var(--azul-ia-vibrante);
+}
+
+footer {
+    padding: 20px;
+    background: var(--cinza-escuro);
+    color: var(--branco);
+    text-align: center;
+    border-top: 3px solid var(--verde-sereno);
+}
+
+@media(max-width: 768px) {
+    .main-col, #sidebar { float: none; width: 100%; }
+    .card-grid { grid-template-columns: 1fr; }
 }
