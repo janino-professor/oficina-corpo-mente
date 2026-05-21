@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área de Treinos - Professor Janino</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../imagens/icone.png" type="image/x-icon">
+    <style>
+        /* Estilos específicos para a área de login e exibição do treino */
+        .login-container {
+            max-width: 450px;
+            margin: 60px auto;
+            padding: 30px;
+            background: var(--cinza-claro);
+            border-radius: 8px;
+            border-top: 4px solid var(--azul-ia-vibrante);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Roboto', sans-serif;
+        }
+        .btn-acessar {
+            width: 100%;
+            background: var(--azul-ia-profundo);
+            color: var(--branco);
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-acessar:hover {
+            background: var(--verde-sereno);
+            transform: scale(1.02);
+        }
+        .erro-mensagem {
+            color: #ff3333;
+            margin-top: 15px;
+            display: none;
+            font-weight: bold;
+        }
+        /* Painel do Treino (Invisível até acertar a senha) */
+        #painel-treino {
+            display: none;
+            margin-top: 40px;
+        }
+        .treino-box {
+            background: var(--cinza-claro);
+            border-left: 5px solid var(--verde-sereno);
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+        .treino-box.b {
+            border-left-color: var(--azul-ia-vibrante);
+        }
+        .exercicio-item {
+            background: var(--branco);
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 4px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div id="branding">
+                <img src="../imagens/logosem fundo.png" alt="Logo Professor Janino" class="logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#sobre">Sobre</a></li>
+                    <li><a href="index.html#materiais">Materiais</a></li>
+                    <li><a href="#dicasdetreinos">Treinos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="container" style="padding: 40px 0; min-height: 70vh;">
+        
+        <div id="area-login" class="login-container">
+            <h2>Área do Aluno</h2>
+            <p style="margin-bottom: 20px; color: #666;">Selecione seu nome e digite a chave de acesso fornecida pelo Professor.</p>
+            
+            <div class="form-group">
+                <label for="aluno">Aluno(a):</label>
+                <select id="aluno">
+                    <option value="">Selecione seu nome...</option>
+                    <option value="handel">Handel</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="senha">Chave de Acesso:</label>
+                <input type="password" id="senha" placeholder="Digite sua senha">
+            </div>
+
+            <button class="btn-acessar" onclick="validarAcesso()">Visualizar Meu Treino</button>
+            <p id="erro" class="erro-mensagem">Senha incorreta ou usuário não selecionado!</p>
+        </div>
+
+        <div id="painel-treino">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h2>Olá, <span id="nome-aluno-boasvindas" style="color: var(--verde-sereno);"></span>!</h2>
+                <p>Aqui está a sua rotina de treinos atualizada. Foco na execução e respeite os descansos!</p><br>
+                <a href="https://docs.google.com/document/d/1S1PPDJvl0JmufnXEoUscShWjmQJqsRmG/edit?usp=sharing&ouid=112552237955147852189&rtpof=true&sd=true" target="_blank" class="button-card" style="background: var(--azul-ia-profundo); flex: 1; min-width: 200px; max-width: 280px; text-align: center;">
+                Download Documento do treino
+            </a>
+            </div>
+
+            <div class="treino-box">
+                <h3>🔵 TREINO A: Coxas, Peito e Bíceps</h3>
+                <p><strong>Frequência:</strong> Alternado (Duração: 1h)</p>
+                <div class="exercicio-item"><strong>1. Agachamento no Banco (Halteres):</strong> 3 séries de 10 a 12 repetições (90s descanso)</div>
+                <div class="exercicio-item"><strong>2. Supino Reto no Chão (Halteres):</strong> 3 séries de 12 repetições (60-90s descanso)</div>
+                <div class="exercicio-item"><strong>3. Desenvolvimento Sentado (Halteres):</strong> 3 séries de 12 repetições (60s descanso)</div>
+                <div class="exercicio-item"><strong>4. Rosca Direta na Polia Baixa:</strong> 3 séries de 12 a 15 repetições (60s descanso)</div>
+                <div class="exercicio-item"><strong>5. Abdominal Supra Tradicional:</strong> 3 séries de 15 repetições (45s descanso)</div>
+            </div>
+
+            <div class="treino-box b">
+                <h3>🟢 TREINO B: Costas, Posterior de Coxa e Tríceps</h3>
+                <p><strong>Frequência:</strong> Alternado (Duração: 1h)</p>
+                <div class="exercicio-item"><strong>1. Remada Curvada Neutra (Halteres):</strong> 3 séries de 12 repetições (90s descanso)</div>
+                <div class="exercicio-item"><strong>2. Stiff (Halteres):</strong> 3 séries de 10 a 12 repetições (90s descanso)</div>
+                <div class="exercicio-item"><strong>3. Crucifixo Inverso Sentado (Halteres):</strong> 3 séries de 12 repetições (60s descanso)</div>
+                <div class="exercicio-item"><strong>4. Tríceps Pulley (Polia Alta):</strong> 3 séries de 12 a 15 repetições (60s descanso)</div>
+                <div class="exercicio-item"><strong>5. Abdominal Prancha Isométrica:</strong> 3 séries de 20 a 30 segundos (60s descanso)</div>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>Professor Janino - "Onde a tecnologia impulsiona o movimento e o conhecimento fortalece a mente." <br>Oficina do Corpo e Mente &copy; 2026</p>
+    </footer>
+
+    <script>
+        function validarAcesso() {
+            const alunoSelec = document.getElementById('aluno').value;
+            const senhaDigitada = document.getElementById('senha').value;
+            const erroMsg = document.getElementById('erro');
+            
+            // Definição do usuário e senha (você altera a senha aqui quando quiser)
+            const usuarioValido = "handel";
+            const senhaValida = "treino123"; // Defina a senha que quiser passar para ele aqui
+
+            if (alunoSelec === usuarioValido && senhaDigitada === senhaValida) {
+                // Esconde a tela de login
+                document.getElementById('area-login').style.display = 'none';
+                
+                // Configura o nome de boas-vindas capitalizado
+                document.getElementById('nome-aluno-boasvindas').innerText = "Handel";
+                
+                // Mostra o treino
+                document.getElementById('painel-treino').style.display = 'block';
+                erroMsg.style.display = 'none';
+            } else {
+                // Mostra erro caso esteja errado
+                erroMsg.style.display = 'block';
+            }
+        }
+        // cadastrar novos alunos alunos, basta ir na parte do <select> do HTML e adicionar mais uma linha, por exemplo: <option value="maria">Maria</option>.Depois, lá embaixo no bloco do <script>, nós expandimos a validação com um if/else ou uma lista simples para associar cada nome à sua respectiva senha e exibir treinos diferentes.
+    </script>
+</body>
+</html>
