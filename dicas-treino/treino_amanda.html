@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treino - Handel</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../imagens/icone.png" type="image/x-icon">
+    <style>
+        .treino-box {
+            background: var(--cinza-claro);
+            border-left: 5px solid var(--verde-sereno);
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 4px;
+        }
+        .treino-box.b {
+            border-left-color: var(--azul-ia-vibrante);
+        }
+        .exercicio-item {
+            background: var(--branco);
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 4px;
+            border-bottom: 1px solid #ddd;
+        }
+        .btn-voltar {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #666;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .btn-voltar:hover {
+            background: #444;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div id="branding">
+                <img src="../imagens/logosem fundo.png" alt="Logo Professor Janino" class="logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#sobre">Sobre</a></li>
+                    <li><a href="index.html#materiais">Materiais</a></li>
+                    <li><a href="dicastreino.html">Treinos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="container" style="padding: 40px 0; min-height: 70vh;">
+        
+        <div id="painel-treino">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h2>Olá, <span style="color: var(--verde-sereno);">Handel</span>!</h2>
+                <p>Aqui está a sua rotina de treinos atualizada. Foco na execução e respeite os descansos!</p><br>
+                <a href="https://docs.google.com/document/d/1S1PPDJvl0JmufnXEoUscShWjmQJqsRmG/edit?usp=sharing&ouid=112552237955147852189&rtpof=true&sd=true" target="_blank" class="button-card" style="background: var(--azul-ia-profundo); display: inline-block; padding: 12px 24px; color: white; text-decoration: none; border-radius: 4px; font-weight: bold;">
+                    Download Documento do treino
+                </a>
+            </div>
+
+            <div class="treino-box">
+                <h3>🔵 TREINO A: Coxas, Peito e Bíceps</h3>
+                <p><strong>Frequência:</strong> Alternado (Duração: 1h)</p>
+                <div class="exercicio-item"><strong>1. Agachamento no Banco (Halteres):</strong> 3 séries de 10 a 12 repetições (90s descanso)</div>
+                <div class="exercicio-item"><strong>2. Supino Reto no Chão (Halteres):</strong> 3 séries de 12 repetições (60-90s descanso)</div>
+                <div class="exercicio-item"><strong>3. Desenvolvimento Sentado (Halteres):</strong> 3 séries de 12 repetições (60s descanso)</div>
+                <div class="exercicio-item"><strong>4. Rosca Direta na Polia Baixa:</strong> 3 séries de 12 a 15 repetições (60s descanso)</div>
+                <div class="exercicio-item"><strong>5. Abdominal Supra Tradicional:</strong> 3 séries de 15 repetições (45s descanso)</div>
+            </div>
+
+            <div class="treino-box b">
+                <h3>🟢 TREINO B: Costas, Posterior de Coxa e Tríceps</h3>
+                <p><strong>Frequência:</strong> Alternado (Duração: 1h)</p>
+                <div class="exercicio-item"><strong>1. Remada Curvada Neutra (Halteres):</strong> 3 séries de 12 repetições (90s descanso)</div>
+                <div class="exercicio-item"><strong>2. Stiff (Halteres):</strong> 3 séries de 10 a 12 repetições (90s descanso)</div>
+                <div class="exercicio-item"><strong>3. Crucifixo Inverso Sentado (Halteres):</strong> 3 séries de 12 repetições (60s descanso)</div>
+                <div class="exercicio-item"><strong>4. Tríceps Pulley (Polia Alta):</strong> 3 séries de 12 a 15 repetições (60s descanso)</div>
+                <div class="exercicio-item"><strong>5. Abdominal Prancha Isométrica:</strong> 3 séries de 20 a 30 segundos (60s descanso)</div>
+            </div>
+            
+            <div style="text-align: center;">
+                <a href="dicastreino.html" class="btn-voltar">Sair / Voltar</a>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>Professor Janino - "Onde a tecnologia impulsiona o movimento e o conhecimento fortalece a mente." <br>Oficina do Corpo e Mente &copy; 2026</p>
+    </footer>
+
+</body>
+</html>
