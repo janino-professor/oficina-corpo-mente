@@ -73,7 +73,7 @@ nav a:hover { color: var(--azul-ia-vibrante); }
     margin-top: 20px;
 }
 
-/* Atualize o seu .card existente */
+/* Configuração do .card */
 .card {
     background: var(--cinza-claro);
     border: 1px solid #ddd;
@@ -91,11 +91,7 @@ nav a:hover { color: var(--azul-ia-vibrante); }
     border-color: var(--azul-ia-vibrante);
 }
 
-.card-grid .card:last-child {
-    grid-column: span 2;
-    max-width: 400px;
-    margin: 0 auto;
-}
+/* REMOVIDO O TRATAMENTO DE :last-child PARA COMPORTAR OS 4 CARDS IGUAIS */
 
 .button-card {
     display: inline-block;
@@ -136,4 +132,21 @@ footer {
 @media(max-width: 768px) {
     .main-col, #sidebar { float: none; width: 100%; }
     .card-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================
+   ANIMAÇÕES DE SCROLL (Ativadas via JavaScript)
+   ========================================== */
+
+/* Estado inicial: invisível e deslocado 30px para baixo */
+.elemento-escondido {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Estado final: totalmente visível e na posição original */
+.elemento-visivel {
+    opacity: 1;
+    transform: translateY(0);
 }
