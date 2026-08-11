@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula 02 - LTP | Professor Janino</title>
+    <title>Aula 01 - BD | Professor Janino</title>
     <link rel="stylesheet" href="../style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
@@ -27,17 +27,22 @@
 
     <section class="container" style="padding: 60px 0; text-align: center;">
         <h2>Aula 02: Engenharia de Requisitos; Requisitos Funcionais vs Requisitos Não Funcionais; Regras de Negócio.</h2>
-        <p style="margin-bottom: 30px;">Escolha uma das opções abaixo para acessar o material didático desta aula.        
+        <p style="margin-bottom: 30px;">Escolha uma das opções abaixo para acessar o material didático desta aula ou enviar sua tarefa.</p>        
 
         <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">            
                      
-            <a href="" target="_blank" class="button-card" style="background: var(--verde-sereno);">
+            <a href="https://docs.google.com/document/d/1UL7anaC8e4n7QnWoyKLZNw2TCFrtxuR_/edit?usp=sharing&ouid=112552237955147852189&rtpof=true&sd=true" target="_blank" class="button-card" style="background: var(--azul-ia-profundo);">
+                Download Documentação
+            </a>
+            
+            <a href="https://docs.google.com/presentation/d/1EmWl7_RCvIkEVZn6wCUPMmRagUVm4mN1/edit?usp=sharing&ouid=112552237955147852189&rtpof=true&sd=true" target="_blank" class="button-card" style="background: var(--verde-sereno);">
                 Apresentação de Slides
-            </a>
+            </a>          
 
-            <a href="" target="_blank" class="button-card" style="background: var(--azul-ia-vibrante); color: var(--cinza-escuro);">
-                Exercícios da Aula
-            </a>
+            <!-- NOVO BOTÃO PARA UPLOAD DE ARQUIVOS/DOCUMENTOS -->
+            <button id="btn-upload" class="button-card btn-upload-style">
+                📤 Enviar Tarefa / Arquivo
+            </button>
 
         </div>
 
@@ -46,9 +51,31 @@
         </div>
     </section>
 
+    <!-- JANELA MODAL DE UPLOAD DE ARQUIVO -->
+    <div id="modal-upload" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Envio de Atividades / Documentos</h3>
+            <p>Faça o upload do seu arquivo para o Google Drive do professor:</p>
+            
+            <!-- Substitua o atributo src abaixo pelo link "Incorporar" (embedded) do seu Google Forms com campo de Upload -->
+            <iframe 
+                src="https://docs.google.com/forms/d/e/1FAIpQLSeUFSqBd6oaglFz2hfDrcEUmQExjgRNbJamMl4m1O1wKOt8_Q/viewform?usp=publish-editor" 
+                width="100%" 
+                height="500" 
+                frameborder="0" 
+                marginheight="0" 
+                marginwidth="0">
+                Carregando formulário...
+            </iframe>
+        </div>
+    </div>
+
     <footer>
         <p>Professor Janino - Oficina do Corpo e Mente &copy; 2026</p>
     </footer>
 
+    <!-- Script JavaScript para funcionalidade do Modal -->
+    <script src="../script.js"></script>
 </body>
 </html>
