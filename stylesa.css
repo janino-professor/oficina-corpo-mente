@@ -1,0 +1,176 @@
+:root {
+    /* Paleta Cyber-Celebration */
+    --cyber-fundo: #0a0b10;
+    --cyber-card: #121420;
+    --cyber-roxo: #7928ca;
+    --cyber-magenta: #ff0080;
+    --cyber-ciano: #00dfd8;
+    --cyber-dourado: #ffd700;
+    --texto-principal: #f0f3f8;
+    --texto-secundario: #a0a5b5;
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--texto-principal);
+    background-color: var(--cyber-fundo);
+    /* Fundo com sutil malha de grade ciber */
+    background-image: 
+        radial-gradient(circle at 50% 0%, rgba(121, 40, 202, 0.15), transparent 70%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 30px 30px, 30px 30px;
+}
+
+/* BANNER DE ANIVERSÁRIO NO TOPO */
+.birthday-banner {
+    background: linear-gradient(90deg, var(--cyber-roxo), var(--cyber-magenta), var(--cyber-ciano));
+    background-size: 200% 200%;
+    animation: gradientShift 6s ease infinite;
+    color: #fff;
+    text-align: center;
+    padding: 8px 15px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    box-shadow: 0 0 12px rgba(255, 0, 128, 0.5);
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    display: flow-root; 
+}
+
+/* HEADER & BRANDING */
+header {
+    background: rgba(18, 20, 32, 0.85);
+    backdrop-filter: blur(10px);
+    color: var(--texto-principal);
+    padding: 20px 0;
+    border-bottom: 2px solid var(--cyber-magenta);
+    box-shadow: 0 4px 20px rgba(255, 0, 128, 0.2);
+    text-align: center;
+}
+
+#branding .logo { 
+    width: 280px; 
+    filter: drop-shadow(0 0 8px rgba(0, 223, 216, 0.6));
+    transition: filter 0.3s ease;
+}
+
+#branding .logo:hover {
+    filter: drop-shadow(0 0 15px rgba(255, 0, 128, 0.9));
+}
+
+.highlight {
+    color: var(--cyber-ciano);
+    text-shadow: 0 0 8px rgba(0, 223, 216, 0.6);
+}
+
+nav ul { list-style: none; margin-top: 15px; }
+nav li { display: inline; padding: 0 20px; }
+nav a { 
+    color: var(--texto-principal); 
+    text-decoration: none; 
+    font-weight: bold;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+nav a:hover { 
+    color: var(--cyber-magenta); 
+    text-shadow: 0 0 8px var(--cyber-magenta);
+}
+
+/* TÍTULOS E TEXTOS */
+h2 {
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(121, 40, 202, 0.5);
+}
+
+p {
+    color: var(--texto-secundario);
+}
+
+/* BOTÕES ESTILIZADOS CYBER-CELEBRATION */
+.button-card {
+    display: inline-block;
+    color: #fff;
+    padding: 12px 28px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0, 223, 216, 0.3);
+}
+
+.birthday-btn {
+    background: linear-gradient(135deg, var(--cyber-magenta), var(--cyber-roxo)) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.birthday-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 0 25px rgba(255, 0, 128, 0.8);
+    color: #fff;
+}
+
+.dark-btn {
+    background: var(--cyber-card) !important;
+    border: 1px solid var(--cyber-ciano);
+    color: var(--cyber-ciano) !important;
+}
+
+.dark-btn:hover {
+    background: var(--cyber-ciano) !important;
+    color: var(--cyber-fundo) !important;
+    box-shadow: 0 0 20px rgba(0, 223, 216, 0.8);
+}
+
+/* FOOTER */
+footer {
+    padding: 25px;
+    background: rgba(10, 11, 16, 0.95);
+    color: var(--texto-secundario);
+    text-align: center;
+    border-top: 1px solid var(--cyber-roxo);
+    box-shadow: 0 -4px 15px rgba(121, 40, 202, 0.2);
+    font-size: 14px;
+}
+
+@media(max-width: 768px) {
+    .container { width: 90%; }
+    #branding .logo { width: 220px; }
+}
+
+/* ANIMAÇÕES DE SCROLL */
+.elemento-escondido {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.elemento-visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
