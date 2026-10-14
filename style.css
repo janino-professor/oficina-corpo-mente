@@ -38,7 +38,7 @@ body {
     top: 20px; /* Gruda no topo com 20px de respiro */
 }
 
-/* Estilos visuais */
+/* Estilos visuais do Header e Branding */
 header {
     background: var(--cinza-escuro);
     color: var(--branco);
@@ -49,23 +49,56 @@ header {
 
 #branding .logo { width: 300px; }
 
+#branding h1 {
+    font-family: 'Orbitron', sans-serif;
+    margin-top: 10px;
+    letter-spacing: 1px;
+}
+
+#branding .highlight {
+    color: var(--azul-ia-vibrante);
+}
+
 nav ul { list-style: none; margin-top: 10px; }
 nav li { display: inline; padding: 0 20px; }
-nav a { color: var(--branco); text-decoration: none; font-weight: bold; }
+nav a { color: var(--branco); text-decoration: none; font-weight: bold; transition: color 0.3s ease; }
 nav a:hover { color: var(--azul-ia-vibrante); }
 
+/* Seções de Destaque (Showcase Principal e Mini) */
 #showcase {
-    min-height: 100px;
+    min-height: 150px;
     background: linear-gradient(rgba(0, 31, 63, 0.8), rgba(0, 31, 63, 0.8)), url('background-tech.jpg') no-repeat center/cover;
     text-align: center;
     color: var(--branco);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 40px 0;
     border-bottom: 5px solid var(--azul-ia-vibrante);
 }
 
-/* Grid de Materiais */
+#showcase h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+#showcase-mini {
+    background: linear-gradient(135deg, var(--azul-ia-profundo), var(--cinza-escuro));
+    color: var(--branco);
+    text-align: center;
+    padding: 30px 0;
+    border-bottom: 3px solid var(--azul-ia-vibrante);
+}
+
+#showcase-mini h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    color: var(--azul-ia-vibrante);
+}
+
+/* Grid de Materiais e Cards */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -73,26 +106,28 @@ nav a:hover { color: var(--azul-ia-vibrante); }
     margin-top: 20px;
 }
 
-/* Configuração do .card */
 .card {
     background: var(--cinza-claro);
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 30px;
     text-align: center;
-    /* Transições suaves para transformações e sombras */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; 
 }
 
-/* O efeito ao passar o mouse */
 .card:hover {
-    transform: translateY(-10px); /* Movimenta o bloco 10px para cima */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Cria uma sombra para dar profundidade */
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     border-color: var(--azul-ia-vibrante);
 }
 
-/* REMOVIDO O TRATAMENTO DE :last-child PARA COMPORTAR OS 4 CARDS IGUAIS */
+.card-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 15px;
+}
 
+/* Botões Padrão e Estilizados */
 .button-card {
     display: inline-block;
     background: var(--azul-ia-profundo);
@@ -102,17 +137,18 @@ nav a:hover { color: var(--azul-ia-vibrante); }
     border-radius: 4px;
     font-size: 14px;
     font-weight: bold;
-    /* Garante que a mudança seja suave */
+    border: 1px solid var(--azul-ia-vibrante);
     transition: all 0.3s ease; 
 }
 
-/* O efeito ao passar o mouse */
 .button-card:hover {
-    background: var(--verde-sereno); /* Muda a cor */
-    transform: scale(1.05); /* Aumenta levemente o tamanho do botão */
+    background: var(--verde-sereno); 
+    border-color: var(--verde-sereno);
+    transform: scale(1.05);
     cursor: pointer;
 }
 
+/* Caixa Lateral (Sidebar) */
 .dark {
     padding: 20px;
     background: var(--cinza-escuro);
@@ -121,14 +157,121 @@ nav a:hover { color: var(--azul-ia-vibrante); }
     border-left: 5px solid var(--azul-ia-vibrante);
 }
 
+.dark h3 {
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 10px;
+    color: var(--azul-ia-vibrante);
+}
+
+/* Rodapé */
 footer {
-    padding: 20px;
+    padding: 25px;
     background: var(--cinza-escuro);
     color: var(--branco);
     text-align: center;
     border-top: 3px solid var(--verde-sereno);
+    margin-top: 40px;
 }
 
+/* ==========================================
+   CLASSES DE SUPORTE E COMPONENTES CYBER
+   ========================================== */
+.section-aula {
+    padding: 60px 20px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center;
+}
+
+.section-aula h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.subtitulo-aula {
+    margin-bottom: 30px;
+    color: #666;
+    font-size: 1.1rem;
+    text-align: center;
+    width: 100%;
+}
+
+.botoes-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center; 
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.espaco-topo-md {
+    margin-top: 40px;
+}
+
+.cyber-celebration {
+    background-color: var(--branco);
+}
+
+.birthday-banner {
+    background: linear-gradient(90deg, var(--azul-ia-profundo), var(--azul-ia-vibrante));
+    color: var(--branco);
+    text-align: center;
+    padding: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.birthday-glow {
+    filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.4));
+}
+
+.birthday-btn {
+    background: var(--azul-ia-profundo);
+    border: 1px solid var(--azul-ia-vibrante);
+}
+
+.birthday-btn:hover {
+    background: var(--verde-sereno);
+    border-color: var(--verde-sereno);
+}
+
+.dark-btn {
+    background: var(--cinza-escuro);
+}
+
+.dark-btn:hover {
+    background: var(--azul-ia-vibrante);
+    color: var(--cinza-escuro);
+}
+
+/* Contador de Visitas no Index */
+.contador-container {
+    margin-top: 15px;
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: 1px solid var(--azul-ia-vibrante);
+}
+
+.contador-titulo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    color: var(--azul-ia-vibrante);
+}
+
+/* Responsividade para Telas Menores */
 @media(max-width: 768px) {
     .main-col, #sidebar { float: none; width: 100%; }
     .card-grid { grid-template-columns: 1fr; }
@@ -137,15 +280,12 @@ footer {
 /* ==========================================
    ANIMAÇÕES DE SCROLL (Ativadas via JavaScript)
    ========================================== */
-
-/* Estado inicial: invisível e deslocado 30px para baixo */
 .elemento-escondido {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-/* Estado final: totalmente visível e na posição original */
 .elemento-visivel {
     opacity: 1;
     transform: translateY(0);
