@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professor Janino - Oficina do Corpo e Mente</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -19,7 +19,7 @@
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#materiais">Materiais</a></li>
+                    <li><a href="#materiais">Aulas Online</a></li>
                     <li><a href="#dicasdetreinos">Treinos</a></li>
                 </ul>
             </nav>
@@ -27,7 +27,6 @@
     </header>
 
     <section id="showcase">
-        <section id="showcase">
         <div class="container">
             <h2>Onde a tecnologia impulsiona o movimento</h2>
             <p>Conectando Informática e Educação Física para o desenvolvimento integral do aluno.</p>
@@ -39,13 +38,11 @@
             </div>
         </div>
     </section>
-     </div>
-    </section>
 
     <section id="conteudo-principal" class="container">
         <div class="main-col">
             <h2 id="sobre">Sobre a Oficina</h2>
-            <p style="text-align: justify;">A <strong>Oficina do Corpo e Mente</strong> A Oficina do Corpo e Mente nasceu da convicção de que o desenvolvimento humano no século XXI não acontece de forma isolada. Vivemos em um mundo onde a lógica da programação e a saúde do corpo são pilares fundamentais para o sucesso e o equilíbrio de qualquer jovem. Aqui, a Informática e a Educação Física deixam de ser disciplinas distantes para se tornarem aliadas. Entendemos que uma mente ágil para codificar e resolver problemas técnicos precisa de um corpo ativo e saudável para sustentá-la. Da mesma forma, a disciplina e a superação do esporte fornecem o foco necessário para os desafios do mundo digital.</p>                      
+            <p style="text-align: justify;">A <strong>Oficina do Corpo e Mente</strong> nasceu da convicção de que o desenvolvimento humano no século XXI não acontece de forma isolada. Vivemos em um mundo onde a lógica da programação e a saúde do corpo são pilares fundamentais para o sucesso e o equilíbrio de qualquer jovem. Aqui, a Informática e a Educação Física deixam de ser disciplinas distantes para se tornarem aliadas. Entendemos que uma mente ágil para codificar e resolver problemas técnicos precisa de um corpo ativo e saudável para sustentá-la. Da mesma forma, a disciplina e a superação do esporte fornecem o foco necessário para os desafios do mundo digital.</p>                      
             
             <h2 id="materiais" style="margin-top: 40px;">Laboratório Digital</h2>
             <p>Aqui você encontra as avaliações interativas e materiais práticos do nosso curso técnico.</p>
@@ -63,10 +60,10 @@
                 <div class="card">
                     <div class="card-header">
                         <img src="imagens/favicon.ico" alt="Icon" class="card-icon">
-                        <h3>Kits de Sala de Aula</h3>
+                        <h3>Aulas online Pronatec</h3>
                     </div>
-                    <p>Resumos estruturados e guias de consulta rápida para as aulas práticas.</p>
-                    <a href="#" class="button-card">Em Breve</a>
+                    <p>Assita as aulas. Turmas fecham dia 16/10!</p>
+                    <a href="https://etp-ead2.se.df.gov.br/login/index.php" class="button-card">ENTRAR</a>
                 </div>
 
                 <div class="card">
@@ -102,9 +99,35 @@
     <footer>
         <p>Professor Janino - "Onde a tecnologia impulsiona o movimento e o conhecimento fortalece a mente." <br>Oficina do Corpo e Mente &copy; 2026</p>
     </footer>
-<footer>
-        <p>Professor Janino - "Onde a tecnologia impulsiona o movimento e o conhecimento fortalece a mente." <br>Oficina do Corpo e Mente &copy; 2026</p>
-    </footer>
+
+    <!-- POPUP MODAL COM ALERTA E CRONÔMETRO -->
+    <div id="popup-overlay" class="popup-overlay">
+        <div class="popup-content">
+            <button id="popup-close-x" class="popup-close-x" aria-label="Fechar">&times;</button>
+            <div class="popup-header">
+                <span class="popup-icon">⚠️</span>
+                <h2 class="piscando">ATENÇÃO ALUNOS!</h2>
+            </div>
+            <p class="popup-destaque">Aviso Importante sobre as Aulas Online</p>
+            <p>O prazo para acesso e realização das atividades da turma online encerra impreterivelmente no dia <strong>16/10</strong>.</p>
+            
+            <!-- CRONÔMETRO REGRESSIVO -->
+            <div class="cronometro-box">
+                <span class="cronometro-label">Tempo restante para o encerramento:</span>
+                <div id="countdown" class="countdown-timer">
+                    <div class="tempo-item"><span id="dias">00</span><small>Dias</small></div>
+                    <div class="tempo-item"><span id="horas">00</span><small>Horas</small></div>
+                    <div class="tempo-item"><span id="minutos">00</span><small>Min</small></div>
+                    <div class="tempo-item"><span id="segundos">00</span><small>Seg</small></div>
+                </div>
+            </div>
+
+            <div class="popup-actions">
+                <a href="https://etp-ead2.se.df.gov.br/login/index.php" target="_blank" class="popup-btn-primary">Acessar Plataforma EAD</a>
+                <button id="popup-close-btn" class="popup-btn-secondary">Entendi / Fechar</button>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 
