@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Interativo: Segurança em Redes e Criptografia | Professor Janino</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Orbitron:wght@500;800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
+    <style>
+        :root {
+            --verde-sereno: #4CAF50;
+            --cinza-escuro: #333333;
+            --cinza-claro: #f4f4f4;
+            --azul-ia-vibrante: #00d4ff;
+            --azul-ia-profundo: #001f3f;
+            --branco: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--cinza-escuro);
+            background-color: var(--branco);
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            display: flow-root;
+        }
+
+        header {
+            background: var(--cinza-escuro);
+            color: var(--branco);
+            padding: 20px 0;
+            border-bottom: var(--verde-sereno) 3px solid;
+            text-align: center;
+        }
+
+        #branding h1 {
+            font-family: 'Orbitron', sans-serif;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+
+        #branding .highlight {
+            color: var(--azul-ia-vibrante);
+        }
+
+        nav ul { list-style: none; margin-top: 10px; }
+        nav li { display: inline; padding: 0 20px; }
+        nav a { color: var(--branco); text-decoration: none; font-weight: bold; transition: color 0.3s ease; }
+        nav a:hover { color: var(--azul-ia-vibrante); }
+
+        .section-aula {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .card-quiz {
+            background: var(--cinza-claro);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 20px;
+            text-align: left;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .card-quiz h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--azul-ia-profundo);
+            margin-bottom: 15px;
+        }
+
+        .opcoes-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .opcao-label {
+            background: var(--branco);
+            border: 1px solid #ccc;
+            padding: 12px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .opcao-label:hover {
+            border-color: var(--azul-ia-vibrante);
+            background: #eef9ff;
+        }
+
+        .btn-acao {
+            background: var(--azul-ia-profundo);
+            color: var(--branco);
+            padding: 12px 25px;
+            border: 1px solid var(--azul-ia-vibrante);
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .btn-acao:hover {
+            background: var(--verde-sereno);
+            border-color: var(--verde-sereno);
+        }
+
+        /* Popups e Modais */
+        .popup-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9999; opacity: 0; visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .popup-overlay.active { opacity: 1; visibility: visible; }
+
+        .popup-content {
+            background: var(--branco);
+            border: 2px solid var(--azul-ia-vibrante);
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 500px; width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.25);
+        }
+
+        .popup-content h3 { font-family: 'Orbitron', sans-serif; margin-bottom: 15px; }
+        .popup-content p { margin-bottom: 15px; font-size: 1rem; line-height: 1.5; text-align: left; }
+
+        .input-grupo {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .input-grupo label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .input-grupo input, .input-grupo select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            background: var(--branco);
+        }
+
+        .birthday-banner {
+            background: linear-gradient(90deg, var(--azul-ia-profundo), var(--azul-ia-vibrante));
+            color: var(--branco);
+            text-align: center;
+            padding: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        footer {
+            padding: 25px;
+            background: var(--cinza-escuro);
+            color: var(--branco);
+            text-align: center;
+            border-top: 3px solid var(--verde-sereno);
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="birthday-banner">
+        <span>⚡ Quiz Interativo de Segurança em Redes e Criptografia ⚡</span>
+    </div>
+
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>Professor <span class="highlight">Janino</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="seginfot.html">Voltar para Segurança da Informação</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section-aula">
+        <div id="tela-inicio">
+            <h2>Identificação do Aluno</h2>
+            <p style="margin-bottom: 20px; color: #666;">Preencha seus dados abaixo para iniciar o quiz e registrar sua nota para o professor.</p>
+            <div class="card-quiz" style="max-width: 450px; margin: 0 auto;">
+                <div class="input-grupo">
+                    <label for="nome-aluno">Nome Completo:</label>
+                    <input type="text" id="nome-aluno" placeholder="Digite seu nome completo" required>
+                </div>
+                <div class="input-grupo">
+                    <label for="turno-aluno">Turno:</label>
+                    <select id="turno-aluno" required>
+                        <option value="">Selecione o turno</option>
+                        <option value="Matutino">Matutino</option>
+                        <option value="Vespertino">Vespertino</option>
+                        <option value="Noturno">Noturno</option>
+                    </select>
+                </div>
+                <button class="btn-acao" onclick="iniciarQuiz()" style="width: 100%;">Iniciar Quiz</button>
+            </div>
+        </div>
+
+        <div id="quiz-container" style="display: none;">
+            <div id="pergunta-cabecalho" style="font-weight: bold; margin-bottom: 10px; color: #555;"></div>
+            <div class="card-quiz">
+                <h3 id="texto-pergunta"></h3>
+                <div class="opcoes-container" id="opcoes-lista"></div>
+            </div>
+            <button class="btn-acao" id="btn-responder" onclick="verificarResposta()" style="display: none;">Confirmar Resposta</button>
+        </div>
+    </section>
+
+    <!-- Popup de Feedback e Resultado -->
+    <div class="popup-overlay" id="popup-modal">
+        <div class="popup-content">
+            <h3 id="popup-titulo">Título</h3>
+            <p id="popup-mensagem"></p>
+            <button class="btn-acao" id="popup-botao" onclick="fecharPopup()" style="width: 100%; margin-top: 0;">Continuar</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Professor Janino - Oficina do Corpo & Mente &copy; 2026</p>
+    </footer>
+
+    <script>
+        const questoes = [
+            {
+                pergunta: 'O pilar do Controle de Acesso (IAA) e a Autenticação Multifator (MFA) utilizam diferentes categorias de fatores para validar a identidade de um usuário[cite: 1]. Entre as opções abaixo, qual representa um fator da categoria "O que você tem"[cite: 1]?',
+                opcoes: {
+                    a: 'Senha numérica (PIN)[cite: 1]',
+                    b: 'Impressão digital[cite: 1]',
+                    c: 'Token físico ou aplicativo autenticador[cite: 1]',
+                    d: 'Reconhecimento facial[cite: 1]',
+                    e: 'Perfil de comportamento[cite: 1]'
+                },
+                correta: 'c',
+                comentario: 'De acordo com o documento sobre Segurança em Redes, os fatores de autenticação são divididos em: "O que você sabe" (ex.: Senha, PIN), "O que você tem" (ex.: Token físico, aplicativo authenticator, SMS) e "O que você é" (ex.: Biometria digital, facial)[cite: 1]. As alternativas B e D são biometrias ("O que você é") e a alternativa A é algo que você sabe[cite: 1].'
+            },
+            {
+                pergunta: 'Em uma infraestrutura de rede, um administrador precisa de um mecanismo capaz de analisar o tráfego e bloquear ativamente em tempo real qualquer ameaça ou comportamento anômalo identificado[cite: 1]. Qual dispositivo/sistema é indicado para essa função[cite: 1]?',
+                opcoes: {
+                    a: 'IPS (Intrusion Prevention System)[cite: 1]',
+                    b: 'IDS (Intrusion Detection System)[cite: 1]',
+                    c: 'VPN (Virtual Private Network)[cite: 1]',
+                    d: 'Servidor Proxy',
+                    e: 'Concentrador de Senhas[cite: 1]'
+                },
+                correta: 'a',
+                comentario: 'Enquanto o IDS apenas detecta e alerta administradores sobre atividades suspeitas[cite: 1], o IPS vai além, agindo ativamente para bloquear o tráfego malicioso em tempo real assim que identifica uma assinatura ou comportamento anômalo[cite: 1].'
+            },
+            {
+                pergunta: 'Uma Virtual Private Network (VPN) é uma tecnologia de segurança amplamente utilizada no ambiente corporativo[cite: 1]. A principal função de uma VPN é[cite: 1]:',
+                opcoes: {
+                    a: 'Substituir a necessidade de um Firewall na rede interna da empresa[cite: 1].',
+                    b: 'Criar um túnel criptografado sobre uma rede pública para permitir acesso remoto seguro e privado[cite: 1].',
+                    c: 'Gerar resumos criptográficos fixos (hashes) para impedir o download de arquivos infectados[cite: 1, 2].',
+                    d: 'Atuar como autoridade certificadora hierárquica dentro da ICP-Brasil[cite: 2].',
+                    e: 'Aumentar a velocidade física de processamento do roteador de borda[cite: 2].'
+                },
+                correta: 'b',
+                comentario: 'A VPN cria um túnel criptografado sobre uma rede pública (como a internet), garantindo privacidade e segurança para usuários externos acessarem a rede interna da organização[cite: 1].'
+            },
+            {
+                pergunta: 'A criptografia simétrica caracteriza-se pela utilização de uma única chave secreta tanto para cifrar quanto para decifrar dados[cite: 2]. Qual das alternativas abaixo apresenta uma vantagem principal da criptografia simétrica[cite: 2]?',
+                opcoes: {
+                    a: 'Facilidade e simplicidade na distribuição das chaves secretas[cite: 2].',
+                    b: 'Utilização de duas chaves matematicamente relacionadas (pública e privada)[cite: 2].',
+                    c: 'Impossibilidade matemática de ser quebrada por testes de força bruta[cite: 2].',
+                    d: 'Alta velocidade de processamento e excelente desempenho para grandes volumes de dados[cite: 2].',
+                    e: 'Geração de assinaturas digitais com não repúdio automático[cite: 2].'
+                },
+                correta: 'd',
+                comentario: 'A grande vantagem da criptografia simétrica é o seu alto desempenho e velocidade ao cifrar e decifrar volumes expressivos de dados[cite: 2]. Seu grande desafio, na verdade, é o problema da distribuição segura de chaves[cite: 2].'
+            },
+            {
+                pergunta: 'Qual dos seguintes algoritmos criptográficos simétricos é considerado o padrão atual da indústria, sendo altamente seguro e operando com tamanhos de chave de 128, 192 ou 256 bits[cite: 2]?',
+                opcoes: {
+                    a: 'RSA[cite: 2]',
+                    b: 'SHA-256[cite: 2]',
+                    c: 'MD5[cite: 2]',
+                    d: 'ECC[cite: 2]',
+                    e: 'AES[cite: 2]'
+                },
+                correta: 'e',
+                comentario: 'O AES (Advanced Encryption Standard) é o padrão atual da indústria[cite: 2]. O RSA e ECC são algoritmos assimétricos[cite: 2], enquanto MD5 e SHA-256 são funções hash[cite: 2].'
+            },
+            {
+                pergunta: 'Na criptografia assimétrica (par de chaves), se o usuário A deseja enviar uma mensagem secreta e confidencial para o usuário B, o usuário A deve cifrar a mensagem utilizando[cite: 2]:',
+                opcoes: {
+                    a: 'A chave pública do usuário A[cite: 2].',
+                    b: 'A chave privada do usuário B[cite: 2].',
+                    c: 'A chave pública do usuário B[cite: 2].',
+                    d: 'A chave privada do usuário A[cite: 2].',
+                    e: 'Uma chave hash compartilhada[cite: 2].'
+                },
+                correta: 'c',
+                comentario: 'Na dinâmica da criptografia assimétrica para sigilo/confidencialidade, quem envia a mensagem utiliza a chave pública do destinatário para criptografá-la[cite: 2]. Somente o destinatário, possuindo sua própria chave privada, conseguirá descriptografar e ler o texto cifrado[cite: 2].'
+            },
+            {
+                pergunta: 'As funções Hash possuem propriedades matemáticas específicas que as diferenciam dos algoritmos de criptografia tradicionais[cite: 2]. Sobre as funções Hash, é correto afirmar que[cite: 2]:',
+                opcoes: {
+                    a: 'São processos reversíveis que permitem descriptografar a saída utilizando a chave privada do remetente[cite: 2].',
+                    b: 'Têm como característica fundamental serem unidirecionais, impossibilitando descobrir o texto original a partir do hash gerado[cite: 2].',
+                    c: 'Alterações pequenas no texto original mantêm o mesmo resumo criptográfico, garantindo estabilidade ao sistema[cite: 2].',
+                    d: 'Geram resumos criptográficos com tamanhos variáveis dependendo da quantidade de bytes digitados[cite: 2].',
+                    e: 'O algoritmo MD5 é o mais recomendado atualmente devido à sua imunidade total a colisões[cite: 2].'
+                },
+                correta: 'b',
+                comentario: 'As funções Hash são unidirecionais (não existe "des-hash")[cite: 2]. Elas transformam dados de qualquer tamanho em uma saída de tamanho fixo[cite: 2], possuem o efeito avalanche (qualquer alteração mínima muda drasticamente o resultado)[cite: 1, 2] e algoritmos antigos como o MD5 são considerados obsoletos/inseguros[cite: 2].'
+            },
+            {
+                pergunta: 'O "Efeito Avalanche" é um fenômeno essencial observado nas funções Hash criptográficas[cite: 1, 2]. Esse fenômeno é caracterizado quando[cite: 1, 2]:',
+                opcoes: {
+                    a: 'Um volume excessivo de acessos derruba o servidor de banco de dados da empresa[cite: 1].',
+                    b: 'A chave pública é distribuída para milhares de usuários ao mesmo tempo sem perder a segurança[cite: 2].',
+                    c: 'Um arquivo cifrado via AES tem seu tamanho multiplicado por três ao passar pela rede[cite: 2].',
+                    d: 'Uma chave privada é comprometida e revoga automaticamente todas as chaves públicas da cadeia[cite: 2].',
+                    e: 'Qualquer alteração mínima no texto original (como modificar um ponto ou uma letra) altera drasticamente o hash final[cite: 1, 2].'
+                },
+                correta: 'e',
+                comentario: 'O efeito avalanche garante que pequenas mudanças na entrada produzam saídas de hash completamente diferentes, permitindo comprovar facilmente a integridade de arquivos e mensagens[cite: 1, 2].'
+            },
+            {
+                pergunta: 'A Assinatura Digital é um mecanismo de proteção indispensável no comércio eletrônico e em documentos jurídicos[cite: 2]. Para gerar uma assinatura digital sobre o hash de um documento de forma a garantir sua autoria, o remetente utiliza[cite: 2]:',
+                opcoes: {
+                    a: 'A sua própria chave pública[cite: 2].',
+                    b: 'A sua própria chave privada[cite: 2].',
+                    c: 'A chave pública do destinatário[cite: 2].',
+                    d: 'A chave privada da Autoridade Certificadora apenas[cite: 2].',
+                    e: 'Um algoritmo simétrico DES de chave descartável[cite: 2].'
+                },
+                correta: 'b',
+                comentario: 'Para assinar um documento digitalmente, o remetente aplica sua chave privada sobre o hash do arquivo[cite: 2]. Qualquer pessoa que possua a chave pública do remetente pode verificar essa assinatura[cite: 2], garantindo a Autenticidade, Integridade e o Não Repúdio[cite: 2].'
+            },
+            {
+                pergunta: 'No Brasil, a infraestrutura criada para prover uma cadeia hierárquica de confiança, validando digitalmente certificados (A1, A3), documentos e transações, é chamada de[cite: 2]:',
+                opcoes: {
+                    a: 'NGFW (Next-Generation Firewall)[cite: 1]',
+                    b: 'ECC (Elliptic Curve Cryptography)[cite: 2]',
+                    c: 'SHA-2 (Secure Hash Algorithm 2)[cite: 2]',
+                    d: 'ICP-Brasil (Infraestrutura de Chaves Públicas Brasileira)[cite: 2]',
+                    e: 'MFA (Multi-Factor Authentication)[cite: 1]'
+                },
+                correta: 'd',
+                comentario: 'A ICP-Brasil (Infraestrutura de Chaves Públicas Brasileira) é a cadeia hierárquica de confiança instituída no país para validar digitalmente certificados de pessoas físicas (CPF), jurídicas (CNPJ) e transações digitais[cite: 2].'
+            }
+        ];
+
+        let indiceAtual = 0;
+        let pontuacao = 0;
+        let respostaSelecionada = null;
+        let dadosAluno = { nome: '', turno: '' };
+
+        const frasesMotivacionais = {
+            esforocoBaixo: [
+                "A nota ficou abaixo do esperado, mas cada erro é uma oportunidade de aprendizado. Reveja o material e tente novamente com mais foco!",
+                "Não desanime! A tecnologia exige prática e persistência. Revise os conceitos de criptografia e redes e você alcançará o sucesso!"
+            ],
+            bom: [
+                "Parabéns pelo bom resultado! Você demonstrou excelente compreensão dos conceitos de segurança e redes.",
+                "Bom trabalho! Seu esforço está dando frutos. Continue se dedicando e aprofundando seus conhecimentos tecnológicos!"
+            ],
+            maxima: [
+                "🎉 NOTA MÁXIMA! Desempenho espetacular! Você dominou completamente a matéria de Segurança em Redes e Criptografia. Parabéns pela excelência! 🚀"
+            ]
+        };
+
+        function iniciarQuiz() {
+            const nome = document.getElementById('nome-aluno').value.trim();
+            const turno = document.getElementById('turno-aluno').value;
+
+            if (!nome || !turno) {
+                alert('Por favor, preencha seu nome e selecione o turno para continuar.');
+                return;
+            }
+
+            dadosAluno.nome = nome;
+            dadosAluno.turno = turno;
+
+            document.getElementById('tela-inicio').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
+            carregarPergunta();
+        }
+
+        function carregarPergunta() {
+            respostaSelecionada = null;
+            document.getElementById('btn-responder').style.display = 'none';
+
+            const q = questoes[indiceAtual];
+            document.getElementById('pergunta-cabecalho').innerText = `Questão ${indiceAtual + 1} de ${questoes.length}`;
+            document.getElementById('texto-pergunta').innerText = q.pergunta;
+
+            const lista = document.getElementById('opcoes-lista');
+            lista.innerHTML = '';
+
+            for (let letra in q.opcoes) {
+                const div = document.createElement('div');
+                div.className = 'opcao-label';
+                div.innerHTML = `<strong>${letra.toUpperCase()})</strong> ${q.opcoes[letra]}`;
+                div.onclick = () => selecionarOpcao(letra, div);
+                lista.appendChild(div);
+            }
+        }
+
+        function selecionarOpcao(letra, elemento) {
+            document.querySelectorAll('.opcao-label').forEach(el => el.style.background = 'var(--branco)');
+            elemento.style.background = '#e0f7ff';
+            respostaSelecionada = letra;
+            document.getElementById('btn-responder').style.display = 'inline-block';
+        }
+
+        function verificarResposta() {
+            const q = questoes[indiceAtual];
+            const acertou = respostaSelecionada === q.correta;
+
+            if (acertou) {
+                pontuacao++;
+                abrirPopup("Resposta Correta! 🎉", `Parabéns, você acertou!<br><br><strong>Comentário:</strong> ${q.comentario}`, proximaEtapa);
+            } else {
+                abrirPopup("Resposta Incorreta ❌", `A alternativa correta era a <strong>(${q.correta.toUpperCase()})</strong>.<br><br><strong>Comentário:</strong> ${q.comentario}`, proximaEtapa);
+            }
+        }
+
+        function proximaEtapa() {
+            indiceAtual++;
+            if (indiceAtual < questoes.length) {
+                carregarPergunta();
+            } else {
+                finalizarQuiz();
+            }
+        }
+
+        function abrirPopup(titulo, mensagem, callback) {
+            document.getElementById('popup-titulo').innerText = titulo;
+            document.getElementById('popup-mensagem').innerHTML = mensagem;
+            document.getElementById('popup-modal').classList.add('active');
+            window.acaoPopupCallback = callback;
+        }
+
+        function fecharPopup() {
+            document.getElementById('popup-modal').classList.remove('active');
+            if (window.acaoPopupCallback) {
+                window.acaoPopupCallback();
+            }
+        }
+
+        function finalizarQuiz() {
+            let fraseEscolhida = '';
+            if (pontuacao === 10) {
+                fraseEscolhida = frasesMotivacionais.maxima[0];
+            } else if (pontuacao >= 5) {
+                const idx = Math.floor(Math.random() * frasesMotivacionais.bom.length);
+                fraseEscolhida = frasesMotivacionais.bom[idx];
+            } else {
+                const idx = Math.floor(Math.random() * frasesMotivacionais.esforocoBaixo.length);
+                fraseEscolhida = frasesMotivacionais.esforocoBaixo[idx];
+            }
+
+            // Envio automático para o Formspree (janino.professorinfor@gmail.com)
+            enviarResultadoPorEmail(pontuacao, fraseEscolhida);
+
+            const htmlFinal = `
+                <h2>Fim do Quiz!</h2>
+                <p style="margin-top: 10px;"><strong>Aluno:</strong> ${dadosAluno.nome}</p>
+                <p><strong>Turno:</strong> ${dadosAluno.turno}</p>
+                <p><strong>Nota Final:</strong> ${pontuacao} / 10</p>
+                <hr style="margin: 15px 0;">
+                <p><em>${fraseEscolhida}</em></p>
+                <br>
+                <p style="font-size: 0.85rem; color: #666;">Seu resultado foi enviado com sucesso para o e-mail do professor.</p>
+            `;
+            
+            document.getElementById('quiz-container').innerHTML = `<div class="card-quiz" style="text-align: center;">${htmlFinal}</div>`;
+        }
+
+        function enviarResultadoPorEmail(nota, frase) {
+            const endpointFormspree = "https://formspree.io/f/xljjbvjl";
+
+            const formData = new FormData();
+            formData.append("email", "janino.professorinfor@gmail.com"); // E-mail padrão para o Formspree identificar o remetente técnico
+            formData.append("Nome do Aluno", dadosAluno.nome);
+            formData.append("Turno", dadosAluno.turno);
+            formData.append("Nota Final", `${nota} / 10`);
+            formData.append("Mensagem Motivacional", frase);
+
+            fetch(endpointFormspree, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log("Resultado enviado com sucesso!");
+                } else {
+                    console.error("Erro ao enviar dados.");
+                }
+            })
+            .catch(erro => console.error("Erro de conexão:", erro));
+        }
+    </script>
+</body>
+</html>
