@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 08 Segurança da Informação | Professor Janino</title>
+    <link rel="stylesheet" href="../stylesa.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Orbitron:wght@500;800&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../imagens/favicon.ico" type="image/x-icon">
+    <style>
+        /* Estilos específicos para o componente de sorteio mantendo a estética cyber */
+        .sorteio-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+            text-align: left;
+        }
+
+        .sorteio-box label {
+            display: block;
+            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.95rem;
+            color: #38bdf8;
+        }
+
+        .sorteio-textarea {
+            width: 100%;
+            height: 150px;
+            background: #0f172a;
+            color: #f8fafc;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+
+        .sorteio-textarea:focus {
+            outline: none;
+            border-color: #38bdf8;
+            box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+        }
+
+        .acoes-sorteio {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-acao {
+            cursor: pointer;
+            border: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .resultado-container {
+            margin-top: 30px;
+            display: none;
+            border-top: 1px solid #334155;
+            padding-top: 20px;
+        }
+
+        .resultado-container h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: #38bdf8;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .lista-sorteada {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .lista-sorteada li {
+            background: rgba(30, 41, 59, 0.9);
+            border-left: 4px solid #38bdf8;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.05rem;
+            animation: surgir 0.3s ease forwards;
+        }
+
+        .posicao-badge {
+            background: #38bdf8;
+            color: #0f172a;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        @keyframes surgir {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="cyber-celebration">
+
+    <div class="birthday-banner">
+        <span> ⚡Celebração Tech & Aprendizado ⚡</span>
+    </div>
+
+    <header>
+        <div class="container">
+            <div id="branding">
+                <img src="../imagens/logosem fundo.png" alt="Logo Professor Janino" class="logo birthday-glow">
+                <h1>Professor <span class="highlight">Janino</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="seginfot.html">Voltar para Segurança da Informação</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="container" style="padding: 60px 0; text-align: center;">
+        <h2>Trabalhos e Nota Final</h2>
+        <p style="margin-bottom: 30px;">Sorteio de Ordem de Apresentação / Datas</p>        
+
+        <div class="sorteio-box">
+            <label for="listaNomes">Insira os nomes ou grupos (um por linha):</label>
+            <textarea id="listaNomes" class="sorteio-textarea" placeholder="Exemplo:&#10;Kauan&#10;Amanda&#10;Beatriz&#10;Ezequiel"></textarea>
+
+            <div class="acoes-sorteio">
+                <button type="button" onclick="realizarSorteio()" class="button-card birthday-btn btn-acao">
+                    ⚡ Sortear Ordem
+                </button>
+                <button type="button" onclick="limparTudo()" class="button-card dark-btn btn-acao">
+                    Limpar
+                </button>
+            </div>
+
+            <div id="resultadoBox" class="resultado-container">
+                <h3>Ordem Sorteada</h3>
+                <ol id="listaResultado" class="lista-sorteada"></ol>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <a href="seginfot.html" class="button-card dark-btn">Voltar para Lista de Aulas</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>Professor Janino - Oficina do Corpo e Mente &copy; 2026</p>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        function realizarSorteio() {
+            const textarea = document.getElementById('listaNomes');
+            const resultadoBox = document.getElementById('resultadoBox');
+            const listaResultado = document.getElementById('listaResultado');
+
+            // Separa os nomes por quebra de linha e remove espaços extras ou linhas vazias
+            let nomes = textarea.value
+                .split('\n')
+                .map(nome => nome.trim())
+                .filter(nome => nome !== '');
+
+            if (nomes.length < 2) {
+                alert('Por favor, insira pelo menos 2 nomes (um por linha) para realizar o sorteio.');
+                return;
+            }
+
+            // Algoritmo Fisher-Yates para embaralhamento aleatório real
+            for (let i = nomes.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [nomes[i], nomes[j]] = [nomes[j], nomes[i]];
+            }
+
+            // Limpa resultados anteriores e exibe a nova lista ordenada
+            listaResultado.innerHTML = '';
+            nomes.forEach((nome, index) => {
+                const li = document.createElement('li');
+                li.style.animationDelay = `${index * 0.08}s`;
+                li.innerHTML = `<span class="posicao-badge">${index + 1}º</span> <span>${nome}</span>`;
+                listaResultado.appendChild(li);
+            });
+
+            resultadoBox.style.display = 'block';
+        }
+
+        function limparTudo() {
+            document.getElementById('listaNomes').value = '';
+            document.getElementById('listaResultado').innerHTML = '';
+            document.getElementById('resultadoBox').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
